@@ -1,0 +1,12 @@
+unmanaged implementation in class zbp_ce_po_header unique;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZCE_PO_Header //alias <alias_name>
+//late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  field ( readonly ) PurchaseOrder,  Category, Type;
+  action changeText parameter ZAE_PO_HEADER_POP result [1] ZCE_PO_Header;
+}

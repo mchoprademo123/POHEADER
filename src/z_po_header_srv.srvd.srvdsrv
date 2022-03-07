@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for PO Header'
+define service Z_PO_HEADER_SRV {
+  expose ZCE_PO_Header;
+}
