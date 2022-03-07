@@ -1,0 +1,9 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZAE_PO_HEADER_POP
+    with 
+{
+ 
+   @EndUserText.label: 'Enter your text:'
+   text;
+    
+}

@@ -1,0 +1,46 @@
+managed implementation in class zbp_cal_i_holiday_345860 unique;
+with draft;
+
+define behavior for ZCAL_I_HOLIDAY_345860 alias HolidayRoot
+persistent table zcal_holi_345860
+draft table zcal_d_holi_860
+lock master total etag LastChangedAt
+//authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update ) HolidayId;
+
+  association _HolidayTxt { create; with draft; }
+
+  mapping for zcal_holi_345860 corresponding
+  {
+    HolidayId = holiday_id;
+    MonthOfHoliday = month_of_holiday;
+    DayOfHoliday = day_of_holiday;
+  }
+}
+
+define behavior for ZCAL_I_HOLIDAYTXT_345860 alias HolidayText
+persistent table zcal_holt_345860
+draft table zcal_d_holt_860
+etag dependent by _Public_Holiday
+lock dependent by _Public_Holiday
+{
+  update;
+  delete;
+  field ( readonly : update ) HolidayId;
+  field ( readonly : update ) Language;
+
+  association _Public_Holiday { with draft; }
+
+  mapping for zcal_holt_345860 corresponding
+  {
+    Language = spras;
+    HolidayId = holiday_id;
+    HolidayDescription = fcal_description;
+  }
+}
